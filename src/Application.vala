@@ -59,26 +59,53 @@ public class GpgWrapper.App : Gtk.Application {
             return Posix.EXIT_FAILURE;
         }
 
+        string gpg_commandline = "";
         if (encrypt) {
             if (decrypt) {
-                warning ("Inconsistent options provided");
+                critical ("Inconsistent options provided");
             } else {
-                warning ("Encrypting");
+                message ("Encrypting");
+                gpg_commandline = "gpg -e -r %s ".printf (Environment.get_user_name ());
             }
         } else if (decrypt) {
-            warning ("Decrypting");
+            message ("Decrypting");
         } else {
-            warning ("No options provided");
+            critical ("No options provided");
             return Posix.EXIT_FAILURE;
         }
 
         if (remaining == null) {
-            warning ("no files provided");
+            critical ("no files provided");
             return Posix.EXIT_FAILURE;
         }
 
         foreach (string s in remaining) {
-            warning ("File %s", s);
+            if (decrypt) {
+                string output;
+                if (s.has_suffix (".gpg")) {
+                    output = s.slice (0, -4);
+                } else {
+                    output = s + ".decrypted";
+                }
+
+                var file = File.new_for_path (output);
+
+                if (file.query_exists (null)) {
+                    warning ("Ignoring already decrypted file");
+                    continue;
+                } else {
+                    output = "'" + output + "'"; //Quote in case output contains spaces
+                }
+
+                gpg_commandline = ("gpg -o %s --decrypt ").printf (output);
+            }
+
+            var command = gpg_commandline + "'" + s + "'"; //Quote in case input contains spaces
+            try {
+                Process.spawn_command_line_sync (command);
+            } catch (SpawnError e) {
+                warning ("Error spawning %s - %s", command, e.message);
+            }
         }
 
         return Posix.EXIT_SUCCESS;
