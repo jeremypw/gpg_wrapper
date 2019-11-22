@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.jeremypw.gpg-wrapper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.jeremypw.gpg-wrapper\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-22 20:05+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Application.vala:36
+msgid "Encrypt or decrypt files with default user gpg key"
+msgstr ""
+
+#: src/Application.vala:37
+msgid ""
+"\n"
+"Before using this tool, a gpg key must have been set up on the user's key "
+"ring. Consult gpg documentation for\n"
+"instructions. The tool is primarily intended for use as a contractor for the "
+"elementaryos Files application and\n"
+"provides the neccessary contractor files. However, it may be used from the "
+"commandline.\n"
+msgstr ""
+
+#: src/Application.vala:43
+msgid "[FILES]"
+msgstr ""
+
+#: src/Application.vala:51
+msgid "No files provided"
+msgstr ""
+
+#: src/Application.vala:65
+msgid "Encrypting"
+msgstr ""
+
+#: src/Application.vala:68
+msgid "Decrypting"
+msgstr ""
+
+#. TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+#: src/Application.vala:120
+#, c-format
+msgid "%i file encrypted successfully"
+msgstr ""
+
+#: src/Application.vala:120
+#, c-format
+msgid "%i files encrypted successfully"
+msgstr ""
+
+#. TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+#: src/Application.vala:122
+#, c-format
+msgid "Encryption failed for %i file"
+msgstr ""
+
+#: src/Application.vala:122
+#, c-format
+msgid "Encryption failed for %i files"
+msgstr ""
+
+#. TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+#: src/Application.vala:125
+#, c-format
+msgid "%i file decrypted successfully"
+msgstr ""
+
+#: src/Application.vala:125
+#, c-format
+msgid "%i files decrypted successfully"
+msgstr ""
+
+#. TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+#: src/Application.vala:127
+#, c-format
+msgid "Decryption failed for %i file"
+msgstr ""
+
+#: src/Application.vala:127
+#, c-format
+msgid "Decryption failed for %i files"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:7
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:4
+msgid "Gpg Wrapper"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:8
+msgid "Encrypt or decrypt multiple files using gpg"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:10
+msgid ""
+"Encrypt or decrypt multiple files using gpg, from the commandline or as a "
+"contractor"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:49
+msgid "Initial release"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:58
+msgid "Main Window"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.appdata.xml.in:63
+msgid "Jeremy Paul Wootten"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:5
+msgid "Encrypt/Decrypt multiple files using gpg"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:6
+msgid "System;Utility;Contractor;"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:7
+msgid "File Encryption;"
+msgstr ""
+
+#. TRANSLATORS: Please do not translate the icon name
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:11
+msgid "com.github.jeremypw.gpg-wrapper"
+msgstr ""
+
+#: data/com.github.jeremypw.gpg-wrapper.desktop.in:21
+msgid "About Gpg Wrapper"
+msgstr ""

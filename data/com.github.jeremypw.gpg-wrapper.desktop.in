@@ -1,0 +1,20 @@
+[Desktop Entry]
+Type=Application
+Name=Gpg Wrapper
+Comment=Encrypt/Decrypt multiple files using gpg
+Keywords=System;Utility;Contractor;
+GenericName=File Encryption;
+
+Exec=com.github.jeremypw.gpg-wrapper %F
+#TRANSLATORS: Please do not translate the icon name
+Icon=com.github.jeremypw.gpg-wrapper
+Terminal=false
+StartupNotify=true
+Categories=Utility;
+Actions=AboutDialog;
+X-GNOME-Gettext-Domain=com.github.jeremypw.gpg-wrapper
+X-GNOME-UsesNotifications=false
+
+[Desktop Action AboutDialog]
+Exec=xdg-open appstream://com.github.jeremypw.gpg-wrapper.desktop
+Name=About Gpg Wrapper

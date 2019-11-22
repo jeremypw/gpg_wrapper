@@ -1,0 +1,3 @@
+src/Application.vala
+data/com.github.jeremypw.gpg-wrapper.appdata.xml.in
+data/com.github.jeremypw.gpg-wrapper.desktop.in

@@ -19,4 +19,5 @@ core_deps = [
 ]
 
 subdir('data')
+subdir('po')
 subdir('src')
