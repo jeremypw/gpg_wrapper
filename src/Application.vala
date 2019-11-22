@@ -25,90 +25,107 @@ public class GpgWrapper.App : Gtk.Application {
         "Encrypt with default key of current user", null },
         { "decrypt", 'd', 0, OptionArg.NONE, out decrypt,
         "Decrypt with default key of current user", null },
-        { "", 0, 0, OptionArg.STRING_ARRAY, ref remaining,
-                        null, N_("[PATH…]") },
         { null }
     };
-
 
     public static bool encrypt = false;
     public static bool decrypt = false;
 
    construct {
         application_id = "com.github.jeremypw.gpg_wrapper";
-        flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
+        set_option_context_summary (N_("Encrypt or decrypt files with default user gpg key"));
+        set_option_context_description (N_("""
+Before using this tool, a gpg key must have been set up on the user's key ring. Consult gpg documentation for
+instructions. The tool is primarily intended for use as a contractor for the elementaryos Files application and
+provides the neccessary contractor files. However, it may be used from the commandline.
+"""));
+
+        set_option_context_parameter_string (N_("[FILES]"));
+        flags = ApplicationFlags.HANDLES_OPEN;
         Intl.setlocale (LocaleCategory.ALL, "");
+
+        add_main_option_entries (GPG_OPTION_ENTRIES);
     }
 
-    /* The array that holds the file commandline arguments
-       needs some boilerplate so its size gets updated. */
-    [CCode (array_length = false, array_null_terminated = true)]
-    public static string[]? remaining = null;
+    public override void activate () {
+        critical (_("No files provided"));
+        return;
+    }
 
-    public override int command_line (ApplicationCommandLine cmd) {
-        var context = new OptionContext (_("Encrypt or Decrypt files using gpg"));
-        context.add_main_entries (GPG_OPTION_ENTRIES, null);
-        context.add_group (Gtk.get_option_group (true));
+    public override void open (File[] files, string hint) {
+        int successes = 0;
+        int fails = 0;
 
-        string[] args = cmd.get_arguments ();
-
-        try {
-            context.parse_strv (ref args);
-        } catch(Error e) {
-            print (e.message + "\n");
-            return Posix.EXIT_FAILURE;
-        }
-
-        string gpg_commandline = "";
+        string action_string = "";
         if (encrypt) {
             if (decrypt) {
                 critical ("Inconsistent options provided");
+                return;
             } else {
-                message ("Encrypting");
-                gpg_commandline = "gpg -e -r %s ".printf (Environment.get_user_name ());
+                action_string = _("Encrypting");
             }
         } else if (decrypt) {
-            message ("Decrypting");
+            action_string = _("Decrypting");
         } else {
-            critical ("No options provided");
-            return Posix.EXIT_FAILURE;
+            critical ("No options provided - aborting");
+            return;
         }
 
-        if (remaining == null) {
-            critical ("no files provided");
-            return Posix.EXIT_FAILURE;
-        }
+        message (action_string);
 
-        foreach (string s in remaining) {
+        foreach (File in_file in files) {
+            string in_path = in_file.get_path ();
+            string out_path;
+            string gpg_commandline = "";
+
             if (decrypt) {
-                string output;
-                if (s.has_suffix (".gpg")) {
-                    output = s.slice (0, -4);
-                } else {
-                    output = s + ".decrypted";
+                if (in_path.has_suffix (".gpg")) {
+                    out_path = in_path.slice (0, -4);
                 }
 
-                var file = File.new_for_path (output);
+                out_path = in_path + ".decrypted";
 
-                if (file.query_exists (null)) {
-                    warning ("Ignoring already decrypted file");
-                    continue;
-                } else {
-                    output = "'" + output + "'"; //Quote in case output contains spaces
+                var out_file = File.new_for_path (out_path);
+
+                if (!out_file.query_exists (null)) {
+                    out_path = "'" + out_path + "'"; //Quote in case output contains spaces
+                    gpg_commandline = ("gpg -o %s --decrypt ").printf (out_path);
                 }
-
-                gpg_commandline = ("gpg -o %s --decrypt ").printf (output);
+            } else {
+                gpg_commandline = "gpg -e -r %s ".printf (Environment.get_user_name ());
             }
 
-            var command = gpg_commandline + "'" + s + "'"; //Quote in case input contains spaces
-            try {
-                Process.spawn_command_line_sync (command);
-            } catch (SpawnError e) {
-                warning ("Error spawning %s - %s", command, e.message);
+            if (gpg_commandline != "") {
+                var command = gpg_commandline + "'" + in_path + "'"; //Quote in case input contains spaces
+
+                try {
+                    string std_out, std_err;
+                    int exit_status;
+                    if (Process.spawn_command_line_sync (command, out std_out, out std_err, out exit_status)) {
+                        if (exit_status == 0) {
+                            message ("SUCCESS");
+                            successes++;
+                        }
+                    }
+                } catch (SpawnError e) {
+                    warning ("Error spawning %s - %s", command, e.message);
+                }
             }
         }
 
-        return Posix.EXIT_SUCCESS;
+        fails = files.length - successes;
+
+        if (encrypt) {
+            ///TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+            message (ngettext (_("%i file encrypted successfully"), _("%i files encrypted successfully"), successes), successes);
+            ///TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+            message (ngettext (_("Encryption failed for %i file"), _("Encryption failed for %i files"), fails), fails);
+        } else {
+            ///TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+            message (ngettext (_("%i file decrypted successfully"), _("%i files decrypted successfully"), successes), successes);
+            ///TRANSLATORS: %i is a placeholder for an integer. It may be moved but not changed or omitted
+            message (ngettext (_("Decryption failed for %i file"), _("Decryption failed for %i files"), fails), fails);
+        }
     }
 }
 
