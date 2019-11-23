@@ -4,16 +4,6 @@ install_data(
 )
 
 i18n.merge_file (
-    'desktop',
-    input: meson.project_name () + '.desktop.in',
-    output: meson.project_name () + '.desktop',
-    install: true,
-    install_dir: join_paths (get_option ('datadir'), 'applications'),
-    po_dir: join_paths (meson.source_root (), 'po'),
-    type: 'desktop'
-)
-
-i18n.merge_file (
     'appdata',
     input: meson.project_name () + '.appdata.xml.in',
     output: meson.project_name () + '.appdata.xml',
@@ -21,12 +11,6 @@ i18n.merge_file (
     install_dir: join_paths (get_option ('datadir'), 'metainfo'),
     po_dir: join_paths (meson.source_root (), 'po'),
     type: 'xml'
-)
-
-test (
-    'Validate desktop file',
-    find_program ('desktop-file-validate'),
-    args: join_paths (meson.current_build_dir (),  meson.project_name () + '.desktop')
 )
 
 test (
