@@ -1,0 +1,8 @@
+com.github.jeremypw.bulk-gpg-wrapper (1.0.0) bionic; urgency=low
+
+  * Initial release.
+  * Encrypt or decrypt files using gpg and default key
+  * Simple commandline interface
+  * Supply contractor files so operations can be performed from Files context menu
+
+ -- Jeremy Wootten <jeremywootten@gmail.com>  Sat, 23 Nov 2019 15:00:00 +0000

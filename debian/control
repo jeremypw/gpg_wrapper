@@ -1,0 +1,23 @@
+Source: com.github.jeremypw.gpg-wrapper
+Maintainer: Jeremy Paul Wootten <jeremywootten@gmail.com>
+Section: x11
+Priority: optional
+Build-Depends: meson (>= 0.42.0),
+               desktop-file-utils,
+               appstream,
+               debhelper (>= 9),
+               valac (>= 0.30),
+               libglib2.0-dev (>= 2.48),
+Standards-Version: 4.1.1
+
+Package: com.github.jeremypw.gpg-wrapper
+Architecture: any
+Recommends: gpg, contractor, pantheon-files
+Description: Encrypt or decrypt file(s) with gpg using default key.
+ .
+ * Use from the command-line or
+ * Use from file context menu in Files
+
+Depends: ${misc:Depends}, ${shlibs:Depends}
+
+
