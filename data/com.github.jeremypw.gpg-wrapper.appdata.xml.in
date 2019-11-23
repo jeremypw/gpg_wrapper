@@ -48,6 +48,10 @@
         <release version="1.0.0" date="2019-11-18" urgency="low">
             <description>
                 <p>Initial release</p>
+                <ul>
+                    <li>Encrypt and decrypt files using gpg with simple command line interface</li>
+                    <li>Install contractor files to allow encryption and decryption from Files </li>
+                </ul>
             </description>
         </release>
     </releases>
@@ -60,20 +64,12 @@
             <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Encrypt.png</image>
         </screenshot>
         <screenshot type="default">
-            <caption>Requesting passphrase</caption>
-            <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Decrypt.png</image>
-        </screenshot>
-        <screenshot type="default">
-            <caption>After using Encryption option</caption>
-            <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Encrypted.png</image>
-        </screenshot>
-        <screenshot type="default">
             <caption>Decryption contractor option</caption>
             <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Decrypt.png</image>
         </screenshot>
         <screenshot type="default">
-            <caption>After using Decryption option</caption>
-            <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Decrypted.png</image>
+            <caption>Requesting passphrase</caption>
+            <image>https://raw.githubusercontent.com/jeremypw/gpg_wrapper/master/data/screenshots/Passphrase.png</image>
         </screenshot>
     </screenshots>
     <developer_name>Jeremy Paul Wootten</developer_name>
