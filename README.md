@@ -17,8 +17,9 @@ PATHS may contains wild cards. The original files remain.
 `com.github.jeremypw.gpg-wrapper -d [PATHS to gpg encrypted files]`
 
 A dialog requiring input of the passphrase for the user's default key will appear. Upon its entry, files
-will be decrypted, removing any `.gpg` extension. The encrypted files remain.  It is assumed that the files
-submitted to the tool have been encrypted by gpg with the default key.
+that are of the mime type `application/pgp-encrypted` will be decrypted, adding `.decrypted` as an extension.
+The encrypted files remain.  It is assumed that the files submitted to the tool have been encrypted
+with the default key.
 
 ### Dependencies
 These dependencies must be present before building
