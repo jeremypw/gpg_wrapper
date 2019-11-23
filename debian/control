@@ -17,7 +17,6 @@ Description: Encrypt or decrypt file(s) with gpg using default key.
  .
  * Use from the command-line or
  * Use from file context menu in Files
-
 Depends: ${misc:Depends}, ${shlibs:Depends}
 
 

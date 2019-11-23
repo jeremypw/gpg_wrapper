@@ -1,4 +1,4 @@
-com.github.jeremypw.bulk-gpg-wrapper (1.0.0) bionic; urgency=low
+com.github.jeremypw.gpg-wrapper (1.0.0) bionic; urgency=low
 
   * Initial release.
   * Encrypt or decrypt files using gpg and default key
