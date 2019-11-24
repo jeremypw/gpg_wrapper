@@ -1,5 +1,5 @@
 [Contractor Entry]
-Name=Decrypt (gpg)
+Name=Decrypt (GPG)
 Description=Decrypt with the default GPG key
 MimeType=application/pgp-encrypted;
 Exec=com.github.jeremypw.gpg-wrapper -d %F

@@ -1,17 +1,17 @@
-# Gpg Wrapper
+# GNU Privacy Guard Wrapper
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
-A *simple* encryption/decryption tool suitable for use as a contractor in elementaryos
-When installed on elementaryos, you will find that the context menu in Pantheon Files shows an extra entry
-"Encrypt (gpg)" when at least one file item has been selected. Clicking on this option results in each of the
+A *simple* encryption/decryption tool suitable for use as a contractor in Elementary OS
+When installed on Elementary OS, you will find that the context menu in Pantheon Files shows an extra entry
+"Encrypt (GPG)" when at least one file item has been selected. Clicking on this option results in each of the
 selected files being encrypted with the user's default gpg key and saved to a new file with `.gpg` add as an extension
 to the original file name.
 
-If the selected files are *all* of the mime-type `application/pgp-encrypted` then another option "Decrypt (gpg)" also
+If the selected files are *all* of the mime-type `application/pgp-encrypted` then another option "Decrypt (GPG)" also
 appears. Clicking on this option results in a dialog asking for the passphrase of the user's default gpg key.  Upon
 successful entry, the selected files are each decrypted and saved to a new file with `.decrypted` added as an extension
 to the original file name. Successful decryption requires that the files have been encrypted with the user's default
-gpg key.
+GPG key.
 
 ![Screenshot](/data/screenshots/Decrypt.png?raw=true "Encrypt and Decrypt context menu options")
 

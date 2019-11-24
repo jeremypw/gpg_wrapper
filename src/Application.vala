@@ -36,7 +36,7 @@ public class GpgWrapper.App : Gtk.Application {
         set_option_context_summary (N_("Encrypt or decrypt files with default user gpg key"));
         set_option_context_description (N_("""
 Before using this tool, a gpg key must have been set up on the user's key ring. Consult gpg documentation for
-instructions. The tool is primarily intended for use as a contractor for the elementaryos Files application and
+instructions. The tool is primarily intended for use as a contractor for the Pantheon Files application and
 provides the neccessary contractor files. However, it may be used from the commandline.
 """));
 

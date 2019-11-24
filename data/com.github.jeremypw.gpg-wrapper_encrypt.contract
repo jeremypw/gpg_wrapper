@@ -1,5 +1,5 @@
 [Contractor Entry]
-Name=Encrypt (gpg)
+Name=Encrypt (GPG)
 Description=Encrypt with the default GPG key
 MimeType=!inode;
 Exec=com.github.jeremypw.gpg-wrapper -e %F
