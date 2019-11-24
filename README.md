@@ -1,25 +1,29 @@
-# gpg_wrapper
+# Gpg Wrapper
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 A *simple* encryption/decryption tool suitable for use as a contractor in elementaryos
+When installed on elementaryos, you will find that the context menu in Pantheon Files shows an extra entry
+"Encrypt (gpg)" when at least one file item has been selected. Clicking on this option results in each of the
+selected files being encrypted with the user's default gpg key and saved to a new file with `.gpg` add as an extension
+to the original file name.
+
+If the selected files are *all* of the mime-type `application/pgp-encrypted` then another option "Decrypt (gpg)" also
+appears. Clicking on this option results in a dialog asking for the passphrase of the user's default gpg key.  Upon
+successful entry, the selected files are each decrypted and saved to a new file with `.decrypted` added as an extension
+to the original file name. Successful decryption requires that the files have been encrypted with the user's default
+gpg key.
 
 ![Screenshot](/data/screenshots/Decrypt.png?raw=true "Encrypt and Decrypt context menu options")
 
-Can also be used from the command line:
+The tool can also be used from the command line:
 
-##To Encrypt
+## To Encrypt
 `com.github.jeremypw.gpg-wrapper -e [PATHS to files requiring encryption]`
 
-Files will be individually encrypted using the user's default gpg key, adding `.gpg` as an extension.
-PATHS may contains wild cards. The original files remain.
-
-##To Decrypt
+## To Decrypt
 `com.github.jeremypw.gpg-wrapper -d [PATHS to gpg encrypted files]`
 
-A dialog requiring input of the passphrase for the user's default key will appear. Upon its entry, files
-that are of the mime type `application/pgp-encrypted` will be decrypted, adding `.decrypted` as an extension.
-The encrypted files remain.  It is assumed that the files submitted to the tool have been encrypted
-with the default key.
+## Building from source
 
 ### Dependencies
 These dependencies must be present before building
@@ -31,19 +35,15 @@ These dependencies must be present before building
 
  `sudo apt install valac meson libglib2.0-dev`
 
-### Building
+### To build
+
 ```
 meson build --prefix=/usr  --buildtype=release
 cd build
 ninja
+
 ```
 
-### Installing & executing
-```
-sudo ninja install
-```
+### To install
 
-You will now find that the context menu in Pantheon Files shows an extra entry when more than one file item
-has been selected. Clicking on this option results in the renamer window being launched with the selected files
-appearing in the "Old Name" list.  You can also lauch the renamer from the command line with:
-```
+`sudo ninja install`
